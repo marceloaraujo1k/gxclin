@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 	
-	<title>GxFisio</title>
+	<title>GxClin</title>
 		
 </head>
 
