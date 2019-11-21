@@ -1,0 +1,49 @@
+<?php
+include '../opendb.php';
+include_once('../func.php');
+
+$id = $_GET["id"];
+
+$dados = array();
+
+// FINANCEIRO								
+$query = mysqli_query($mysql_conn, "SELECT * FROM financeiro WHERE idfinanceiro ='$id'");
+$form = mysqli_fetch_assoc($query);
+
+	$dado[]=$form["idfinanceiro"];
+	$dado[]=$form["valor"];
+	$dado[]=$form["valorRecebido"];
+	$dado[]=$form["desconto"];
+	$dado[]=$form["saldoDevedor"];
+	$dado[]=$form["descricao"];
+	$dado[]= $form["idconsultas"];
+	$idconsultas = $form["idconsultas"];
+
+
+// FINANCEIRO								
+$query1 = mysqli_query($mysql_conn, "SELECT agendamentos.idconsultas, agendamentos.idpaciente, agendamentos.idempresa, agendamentos.idmedico, agendamentos.dataInicio, agendamentos.idprocedimentos, agendamentos.statusAtendimento,
+									pacientes.idpaciente, pacientes.nome, pacientes.sexo, pacientes.idconvenio,
+									pacientes.observacao FROM agendamentos INNER JOIN pacientes ON agendamentos.idpaciente = pacientes.idpaciente WHERE agendamentos.idconsultas='$idconsultas'");
+$row = mysqli_fetch_assoc($query1);
+	$dado[]= $row["nome"];
+	$dado [] = $row["idempresa"];
+	$dado [] = $row["idconvenio"];
+	$idconvenio = $row["idconvenio"];
+	
+$query2 = mysqli_query($mysql_conn, "SELECT * FROM convenio WHERE idconvenio ='$idconvenio'");
+$line = mysqli_fetch_assoc($query2);
+$dado[] = $line["descricao"];
+$dados[] = $dado;
+
+		
+$json_data = array(
+	"draw" => intval(1),//para cada requisição é enviado um número como parâmetro
+	"recordsTotal" => intval(count($dados)),  //Quantidade de registros que há no banco de dados
+	"recordsFiltered" => intval(count($dados)), //Total de registros quando houver pesquisa
+	"data" => $dados   //Array de dados completo dos dados retornados da tabela 
+);
+
+echo json_encode($dados); 
+
+?>	
+
