@@ -209,7 +209,7 @@ if(isset($_GET["edit"]))
 						
 								<div class="form-group col-md-2">
 										<label for="convenio">Profissional</label>
-											<select id="profissionais" name="idprofissional" class="form-control">
+											<select id="profissionais"  name="idprofissional" class="form-control">
 											<option value=""></option>
 											<?php
 											for($i=0; $i<count($profissionais); $i++)
@@ -217,13 +217,13 @@ if(isset($_GET["edit"]))
 											if($form["idprofissional"] == $profissionais[$i]['idprofissional'])
 											{	
 											?>
-											<option value="<?=$profissionais[$i]['idprofissional']?>" selected><?=$profissionais[$i]['nome']?></option>
+											<option value="<?=$profissionais[$i]['idprofissional']?>" selected><?=$profissionais[$i]['profissional']?></option>
 											<?php
 											}
 											else
 											{
 											?>
-											<option value="<?=$profissionais[$i]['idprofissional']?>" ><?=$profissionais[$i]['nome']?></option>
+											<option value="<?=$profissionais[$i]['idprofissional']?>" ><?=$profissionais[$i]['profissional']?></option>
 											<?php
 											}
 											}
@@ -338,8 +338,9 @@ if(isset($_GET["edit"]))
 									
 									<div class="form-group">
 										<label for="nome">Profissional</label>
-										   <input class="form-control" disabled id="nomeProfissional" name="nome" value="">
+										   <input class="form-control"  id="nomeProfissional" name="nomeProfissional" value="<?=$form['idprofissional']?>">
                         			</div>
+									
 											
 						
 								
@@ -421,7 +422,7 @@ if(isset($_GET["edit"]))
 									</div>
 								</div>
 							</div>
-				</div>
+				
 	
 	
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -460,7 +461,7 @@ if(isset($_GET["edit"]))
     </script>
 	
 	<script>
-		$( document ).ready(function() {
+		$(document).ready(function() {
 			$('#datetimepicker1').datetimepicker({
 			defaultDate: new Date(),
 			format:'DD/MM/YYYY HH:mm'
@@ -471,7 +472,7 @@ if(isset($_GET["edit"]))
 	
 		
 	<script>
-		$( document ).ready(function() {
+		$(document).ready(function() {
 			$('#datetimepicker2').datetimepicker({
 			defaultDate: new Date(),
 			format:'DD/MM/YYYY HH:mm'
@@ -480,7 +481,7 @@ if(isset($_GET["edit"]))
 	  </script>	
 	
 		<script>
-		$( document ).ready(function() {
+		$(document).ready(function() {
 			$('#datetimepicker3').datetimepicker({
 			defaultDate: new Date(),
 			format:'DD/MM/YYYY HH:mm'

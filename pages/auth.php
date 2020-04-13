@@ -24,6 +24,7 @@ else if ($user && $password)
 		$auth = mysqli_fetch_array($queryUser);
 		$_SESSION['user'] = $auth['nome'];
 		$_SESSION['idempresa'] = $auth['idempresa'];
+		$_SESSION['idfuncao'] = $auth['idfuncao'];
 	
 		mysqli_free_result($queryUser);
 		header('location: ./pacientes/pacientes.php' );

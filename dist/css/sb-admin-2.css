@@ -407,9 +407,9 @@ table.dataTable thead .sorting:after {
     left: 40px;
   }
   ul.timeline > li > .timeline-panel {
-    width: calc(10%);
-    width: -moz-calc(10%);
-    width: -webkit-calc(10%);
+    width: calc(85%);
+    width: -moz-calc(85%);
+    width: -webkit-calc(85%);
   }
   ul.timeline > li > .timeline-badge {
     top: 16px;

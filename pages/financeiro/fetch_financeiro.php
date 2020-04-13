@@ -9,17 +9,18 @@ $conn = $mysql_conn;
 $columns = array( 
 	0 =>'idfinanceiro', 
 	1 => 'idconsultas',
-	2 => 'tipo',
-	3 => 'descricao',
-	4 => 'dataRecebimento',
-	5 => 'valor',
-	6 => 'valorRecebido',
-	7 => 'desconto',
-	8 => 'saldoDevedor',
-	9 => 'statusPagamento'
+	2 => 'filial',
+	3 => 'tipo',
+	4 => 'descricao',
+	5 => 'dataRecebimento',
+	6 => 'valor',
+	7 => 'valorRecebido',
+	8 => 'desconto',
+	9 => 'saldoDevedor',
+	10 => 'statusPagamento'
 	
 );
-$query = "SELECT * FROM financeiro WHERE ";
+$query = "SELECT *,  (SELECT empresa FROM empresa WHERE idempresa=financeiro.idempresa) as filial FROM financeiro WHERE ";
 
 if($_POST["is_date_search"] == "yes")
 {
@@ -66,7 +67,7 @@ while($row = mysqli_fetch_array($result))
  $sub_array = array();
  $sub_array[] = $row["idfinanceiro"];
 	 $sub_array[] = utf8_encode($row["idconsultas"]);
-	$sub_array[] = utf8_encode($row["idempresa"]);
+	$sub_array[] = utf8_encode($row["filial"]);
 	$sub_array[] = utf8_encode($row["tipo"]);
 	$sub_array[] = utf8_encode($row["descricao"]); // USAR A FUNÇÃO UTF8_ENCODE PARA RESOLVER O PROBLEMA DE ACENTUAÇÃO QUE ESTAVA PREJUDICANDO O JSON
 
@@ -91,7 +92,7 @@ while($row = mysqli_fetch_array($result))
 
 function get_all_data($conn)
 {
- $query = "SELECT * FROM financeiro";
+ $query = "SELECT *,  (SELECT empresa FROM empresa WHERE idempresa=financeiro.idempresa) as filial FROM financeiro";
  $result = mysqli_query($conn, $query);
  return mysqli_num_rows($result);
 }

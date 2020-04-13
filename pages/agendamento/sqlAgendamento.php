@@ -36,10 +36,10 @@ function inserir() {
 			$cor='#ffa722';
 			break;
 		}	
-		$query	= "INSERT INTO agendamentos (idpaciente, tipoAtendimento, idconvenio, idprocedimentos, idmedico,  idempresa, dataInicio, dataFim, cor, statusAtendimento) VALUES ('$form[idpaciente]', '$form[tipoAtendimento]', '$form[idconvenio]', '$form[idprocedimentos]', 
-		'$form[idmedico]', '$form[idempresa]',  STR_TO_DATE('$form[dataInicio]', '%d/%m/%Y %H:%i:%s'), ADDTIME((STR_TO_DATE('$form[dataInicio]', '%d/%m/%Y %H:%i:%s')),3000), '$cor', '$form[statusAtendimento]')";
+		$query	= "INSERT INTO agendamentos (idpaciente, idconvenio, idprocedimentos, idprofissional,  idempresa, dataInicio, dataFim, cor, statusAtendimento) VALUES ('$form[idpaciente]', '$form[idconvenio]', '$form[idprocedimentos]', 
+		'$form[idprofissional]', '$form[idempresa]',  STR_TO_DATE('$form[dataInicio]', '%d/%m/%Y %H:%i:%s'), ADDTIME((STR_TO_DATE('$form[dataInicio]', '%d/%m/%Y %H:%i:%s')),'01:00:00'), '$cor', '$form[statusAtendimento]')";
 		mysqli_query($mysql_conn,$query) ;
-			header('location: agendamento.php' );
+		header('location: agendamento.php' );
 	}
 }		
 
@@ -61,9 +61,9 @@ function alterar()
 			$cor='#ffa722';
 			break;
 		}	
-		$query	= "UPDATE agendamentos SET idprocedimentos='$form[idprocedimentos]',  idmedico='$form[idmedico]',  idempresa='$form[idempresa]', statusAtendimento='$form[statusAtendimento]', cor='$cor', idconvenio='$form[idconvenio]'  where idconsultas='$form[idconsultas]'";	
+		$query	= "UPDATE agendamentos SET idprocedimentos='$form[idprocedimentos]',  idprofissional='$form[idprofissional]',  idempresa='$form[idempresa]', statusAtendimento='$form[statusAtendimento]', cor='$cor', idconvenio='$form[idconvenio]'  where idconsultas='$form[idconsultas]'";	
 		mysqli_query($mysql_conn,$query);
-	    header('location: agendamento.php' );
+	    header('location: agendamento.php');
 	
 	}
 }		

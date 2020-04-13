@@ -187,8 +187,9 @@ $empresa = getItensTable($mysql_conn,"empresa");
 									</div>
 									</div>
 									<div class="modal-footer">
-										<button type="submit" class="btn btn-success">Enviar</button>
-										
+										<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+										<button type="submit" class="btn btn-success">Salvar</button>
+											
 								</form>
 							</div>
 						</div>
@@ -292,6 +293,14 @@ $empresa = getItensTable($mysql_conn,"empresa");
 
 	</script>	
 	
+<script>
+	$('[data-dismiss=modal]').on('click', function (e) {
+		$('#modalUsuario').on('hidden.bs.modal', function () {
+		document.getElementById("idusuario").value = null;	
+		$(this).find('form').trigger('reset');
+		});
+	});
+</script>
 	
 </body>
 

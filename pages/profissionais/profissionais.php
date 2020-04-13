@@ -149,10 +149,24 @@ $empresa = getItensTable($mysql_conn,"empresa");
 										<label>Especialidade</label>
 										 <input class="form-control" name="especialidade" id="especialidade">
 									</div>
-								
+								</div>
+								<div class="row">
+									<div class="form-group col-md-6">
+										<label>Tipo Repasse</label>
+										<select id="tipoRepasse" name="tipoRepasse" class="form-control"> 
+											<option value="percentual">Percentual</option>
+											<option value="valorFixo">Valor Fixo</option>								
+									</select>
+									</div>
+									<div class="form-group col-md-6">
+										<label>Valor</label>
+										 <input class="form-control" name="valorRepasse" id="valorRepasse">
+									</div>
 								</div>
 									<div class="modal-footer">
-										<button type="submit" class="btn btn-success">Enviar</button>
+									<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+								
+										<button type="submit" class="btn btn-success">Salvar</button>
 									</div>	
 								</form>
 							</div>
@@ -239,6 +253,8 @@ $empresa = getItensTable($mysql_conn,"empresa");
 		document.getElementById("cpf").value = result[0][3];
 		document.getElementById("conselho").value = result[0][4];
 		document.getElementById("especialidade").value = result[0][5];
+		document.getElementById("tipoRepasse").value = result[0][6];
+		document.getElementById("valorRepasse").value = result[0][7];
 		
 		}
 		
@@ -249,8 +265,16 @@ $empresa = getItensTable($mysql_conn,"empresa");
 		});
 
 	</script>	
-	
-	
+
+<script>
+	$('[data-dismiss=modal]').on('click', function (e) {
+		$('#modalUsuario').on('hidden.bs.modal', function () {
+			document.getElementById("idprofissional").value = null;
+		$(this).find('form').trigger('reset');
+		});
+	});
+</script>	
+
 </body>
 
 </html>

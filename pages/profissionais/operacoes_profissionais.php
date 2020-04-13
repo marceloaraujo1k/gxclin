@@ -12,11 +12,14 @@ $query = mysqli_query($mysql_conn, "SELECT * FROM profissionais WHERE idprofissi
 $form = mysqli_fetch_assoc($query);
 
 	$dado[]=$form["idprofissional"];
-	$dado[]=$form["nome"];
+	$dado[]=$form["profissional"];
 	$dado[]=$form["rg"];
 	$dado[]=$form["cpf"];
 	$dado[]=$form["conselho"];
 	$dado[]=$form["especialidade"];
+	$dado[]=$form["tipoRepasse"];
+	$dado[]=$form["valorRepasse"];
+
 
 $dados[] = $dado;
 

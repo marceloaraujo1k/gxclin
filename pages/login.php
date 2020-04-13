@@ -3,7 +3,9 @@
 
 <?php
 	session_start();
-	include 'opendb.php';
+    include 'opendb.php';
+    include_once('func.php');
+    $empresa = getItensTable($mysql_conn,"empresa");
 ?>
 
 <head>
@@ -56,14 +58,30 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" name="password" id="password" type="password" value="" required>
                                 </div>
-								 <div class="form-group">
-								            <label>Filial</label>
-                                            <select class="form-control" name="idempresa" id="idempresa">
-                                                <option value="0">Escolha a filial</option>
-                                                <option value="1">Unidade 1</option>
-                                                <option value="2">Unidade 2</option>
+                                <div class="form-group">
+                                         <label for="empresa">Filial</label>
+                                            <select id="empresa" name="idempresa" class="form-control" required>
+                                                <option value=""></option>
+                                                <?php
+                                                for($i=0; $i<count($empresa); $i++)
+                                                {
+                                                if($form["idempresa"] == $empresa[$i]['idempresa'])
+                                                {	
+                                                ?>
+                                                <option value="<?=$empresa[$i]['idempresa']?>" selected><?=$empresa[$i]['empresa']?></option>
+                                                <?php
+                                                }
+                                                else
+                                                {
+                                                ?>
+                                                <option value="<?=$empresa[$i]['idempresa']?>" ><?=$empresa[$i]['empresa']?></option>
+                                                <?php
+                                                }
+                                                }
+                                                ?>
                                             </select>
-                                        </div>
+                                 </div>
+								
 								
                           
                                 <div class="checkbox">

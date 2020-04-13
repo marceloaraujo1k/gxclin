@@ -192,7 +192,7 @@ $form["saldoDevedor"]=null;
     
  
     <!-- /#wrapper -->
-								<!-- Modal Relatorios -->
+	<!-- Modal Relatorios -->
 				<div class="modal fade" id="modalRelatorio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
@@ -201,7 +201,17 @@ $form["saldoDevedor"]=null;
 									</div>
 									<div class="modal-body">
 								 <form role="form" action="./.php" method='post' enctype="multipart/form-data">
-					
+
+								 <div class="row">
+								 <div class="form-group col-md-6">
+									  <label for="tipoRelatorio">Tipo</label>
+									  <select id="tipoRelatorio" name="tipoRelatorio" class="form-control"> 
+											<option value="0">Receitas/Despesas</option>
+											<option value="1">Produção</option>
+									</select>
+								</div>
+								</div>
+
 								<div class="row">
 									<div class="input-daterange">
 										<div class="form-group col-md-6"> 
@@ -682,12 +692,25 @@ $form["saldoDevedor"]=null;
 					var end = $('#end_date_report').data('DateTimePicker').date().toString();
 					var date = new Date(end);
 					var end_date = date.getFullYear()+'-'+(date.getMonth() + 1) + '-' + date.getDate();
+					var id = document.getElementById("tipoRelatorio").value;
+					switch (id) {
+						case '0':
+							window.open("relatorioFinanceiro.php?start_date="+start_date+"&end_date="+end_date);	
+							
+							break;
+						
+						case '1':
+							window.open("relatorioProducao.php?start_date="+start_date+"&end_date="+end_date);
+							break;
+						default:
+							text = "No value found";
+							}
+						});
 				//	var statusPagamento = $("#statusPagamento").find('option:selected').text();
 				//	window.open("relatorioFinanceiro.php?statusPagamento="+statusPagamento+"&start_date="+start_date+"&end_date="+end_date);
-					window.open("relatorioFinanceiro.php?start_date="+start_date+"&end_date="+end_date);
 					
-					});
-				}
+					};
+				
 </script>
 	  
 	<script>

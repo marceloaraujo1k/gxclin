@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+
+  RewriteEngine on
+
+   # pass-through if another rewrite rule has been applied already
+   RewriteCond %{ENV:REDIRECT_STATUS} 200
+   RewriteRule ^ - [L]
+
+   RewriteRule ^((css|js)/.+\..{2,})$ assets/$1 [L,QSA]
+
+   #direciona qualquer coisa na url para o index.php
+   RewriteRule ^(.+)$ index.php?$1 [L]
+   RewriteRule ^$ index.php [L]
+</IfModule>

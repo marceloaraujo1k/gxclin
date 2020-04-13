@@ -105,7 +105,7 @@ include_once('../func.php');
 										<th>Código</th>
 										<th>Nome</th>
 										<th>Nascimento</th>
-										<th>Cidade</th>
+										<th>Telefone</th>
                                     	<th>Filial</th>
 										<th> </th>
 										<th> </th>
@@ -170,10 +170,10 @@ include_once('../func.php');
 	
 	
 	<script>
-		$(document).on('click','#btnProntuario',function(e){
+		$(document).on('click','#btnVisualizar',function(e){
             e.preventDefault();
 		var id = $(this).data('id');
-		window.open("prontuarios.php?id="+id,"prontuario");
+		window.open("cadastroPacientes.php?id="+id,"visualizar");
 		});
 		</script>
 		

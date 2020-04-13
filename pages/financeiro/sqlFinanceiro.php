@@ -81,9 +81,10 @@ function receberPagamento()
 		global $mysql_conn;
 		if(!empty($_POST)) {
 		$form = $_POST;
-			$query	= "INSERT INTO financeiro (idconsultas, idempresa, descricao, dataRecebimento, dataVecto, valor, valorRecebido, desconto, saldoDevedor, formaPagamento, 
-			statusPagamento, tipo) VALUES ('$form[idconsultas]', '$form[idempresa]', '$form[procedimento]', STR_TO_DATE('$form[dataRecebimento]', '%d/%m/%Y %H:%i:%s'), STR_TO_DATE('$form[dataVencimento]', '%d/%m/%Y %H:%i:%s'),
+			$query	= "INSERT INTO financeiro (idconsultas, idempresa,idprofissional, descricao, dataRecebimento, dataVecto, valor, valorRecebido, desconto, saldoDevedor, formaPagamento, 
+			statusPagamento, tipo) VALUES ('$form[idconsultas]', '$form[idempresa]',(SELECT idprofissional FROM profissionais WHERE profissional='$form[nomeProfissional]' LIMIT 1), '$form[procedimento]', STR_TO_DATE('$form[dataRecebimento]', '%d/%m/%Y %H:%i:%s'), STR_TO_DATE('$form[dataVencimento]', '%d/%m/%Y %H:%i:%s'),
 			'$form[valor]','$form[valorRecebido]', '$form[desconto]', '$form[saldoDevedor]','$form[formaPagamento]','$form[statusPagamento]','$form[tipo]')";
+			var_dump($query);
 			mysqli_query($mysql_conn, $query);
 		  header('location: ../agendamento/agendamento.php' );
 		}	

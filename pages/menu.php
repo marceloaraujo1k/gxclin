@@ -1,3 +1,12 @@
+<?php
+    include "opendb.php";
+
+    $funcao = $_SESSION['idfuncao'];
+    
+    
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +22,7 @@
 </head>
 
             <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" ">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -25,7 +34,7 @@
             </div>
             <!-- /.navbar-header -->
 
-            <ul class="nav navbar-top-links navbar-right">
+           <ul class="nav navbar-top-links navbar-right mr-0">
                
                 <!-- /.dropdown -->
                 <li class="dropdown">
@@ -59,18 +68,34 @@
                             </div>
                             <!-- /input-group -->
                         </li>
+
+						<?php 
+                            if($funcao == 0){
+                        ?>
 						 <li>
                             <a href="../gerencial/dashboard.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard </a>
                         </li>
+						
+                        <?php }?>
+
 						 <li>
                             <a href="../pacientes/pacientes.php"><i class="fa fa-user fa-fw"></i> Pacientes </a>
                         </li>
+                            
                         <li>
                             <a href="../agendamento/agendamento.php"><i class="fa fa-calendar fa-fw"></i> Agendamento </a>
                         </li>
-					<li>
+						
+						
+                        <?php 
+                            if($funcao == 0){
+                        ?>
+					    <li>
+					
                             <a href="#"><i class="fa fa-bar-chart-o"></i> Financeiro<span class="fa arrow"></span></a>
+
                             <ul class="nav nav-second-level">
+
                              <li>
                                     <a href="../financeiro/financeiro.php">Receitas/Despesas</a>
                              </li>
@@ -78,6 +103,12 @@
 							</ul>
                             <!-- /.nav-second-level -->
                         </li>
+
+						<?php }?>
+
+                        <?php 
+                            if($funcao == 0){
+                        ?>
 						<li>
                             <a href="#"><i class="fa fa-archive"></i> Administrativo<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -105,12 +136,13 @@
 							</ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        <?php }?>
 						
-						
+						</ul>
                     </div>
                 <!-- /.sidebar-collapse -->
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-	  </nav>
+	  
 </html>

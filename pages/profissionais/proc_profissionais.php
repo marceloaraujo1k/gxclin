@@ -22,11 +22,14 @@ $qnt_linhas = mysqli_num_rows($resultado_user);
 //Indice da coluna na tabela visualizar resultado => nome da coluna no banco de dados
 $columns = array( 
 	0 =>'idprofissional', 
-	1 => 'nome',
+	1 => 'profissional',
 	2 => 'rg',
 	3 => 'cpf',
 	4 => 'conselho',
-	5 => 'especialidade'
+	5 => 'especialidade',
+	6 => 'tipoRepasse',
+	7 => 'valor',
+	
 );
 
 //Obtendo registros de número total sem qualquer pesquisa
@@ -38,7 +41,7 @@ $qnt_linhas = mysqli_num_rows($resultado_user);
 $result_usuarios = "SELECT * FROM profissionais WHERE 1=1";
 if( !empty($requestData['search']['value']) ) {   // se houver um parâmetro de pesquisa, $requestData['search']['value'] contém o parâmetro de pesquisa
 	$result_usuarios.=" AND ( idprofissional LIKE '".$requestData['search']['value']."%' ";  
-	$result_usuarios.=" OR nome LIKE '".$requestData['search']['value']."%' ";
+	$result_usuarios.=" OR profissional LIKE '".$requestData['search']['value']."%' ";
 	$result_usuarios.=" OR rg LIKE '".$requestData['search']['value']."%' ";
 	$result_usuarios.=" OR cpf LIKE '".$requestData['search']['value']."%' ";
 	$result_usuarios.=" OR conselho LIKE '".$requestData['search']['value']."%' ";
@@ -58,7 +61,7 @@ while( $row =mysqli_fetch_array($resultado_usuarios) ) {
 	$dado = array(); 
 	
 	$dado[] =  $row["idprofissional"];
-	$dado[] =  $row["nome"];
+	$dado[] =  $row["profissional"];
 	$dado[] =  $row["rg"];
 	$dado[] =  $row["cpf"];
 	$dado[] =  $row["conselho"];
